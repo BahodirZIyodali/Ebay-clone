@@ -9,8 +9,7 @@ import Product from "./components/Product";
 import Like from './components/Like';
 import Cart from './components/Cart';
 import SearchItem from './components/SearchItems'
-import Register from './components/Register'
-import Login from './components/Login'
+
 
 function App() {
    const [likedProducts, setLikedProducts] = useState(() => {
@@ -28,15 +27,11 @@ function App() {
     localStorage.setItem('addToBuy', JSON.stringify(addToBuy));
   }, [likedProducts, addToBuy]);
 
-  const [registeredEmail, setRegisteredEmail] = useState('');
 
-  const handleRegistration = (name) => {
-    setRegisteredEmail(name);
-  };
 
   return (
     <>
-      <Navbar  registeredEmail={registeredEmail} />
+      <Navbar   />
       <Search />
       <Routes>
         <Route path="/" element={<Home  likedProducts={likedProducts}  setLikedProducts={setLikedProducts}  addToBuy={addToBuy} setAddToBuy={setAddToBuy}  />} />
@@ -45,8 +40,6 @@ function App() {
         <Route path='/like' element={ <Like setLikedProducts={setLikedProducts} likedProducts={likedProducts} />}    />  
         <Route path='/cart' element={ <Cart setAddToBuy={setAddToBuy} addToBuy={addToBuy}/>} /> 
         <Route path='/search/:productName' element={ <SearchItem />} /> 
-        <Route path='register' element={ <Register onRegistration={handleRegistration} />} /> 
-        <Route path='login' element={ <Login />} /> 
       </Routes>
       <Footer />
     </>
